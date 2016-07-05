@@ -34,7 +34,10 @@
 ;; Some global keybindings
 ;(global-set-key (kbd "C-j") #'join-line)
 (global-set-key (kbd "M-g") #'goto-line)
-(global-set-key (kbd "C-x C-k") #'compile)
+;(global-set-key (kbd "C-x C-k") #'compile)
+(global-set-key "\C-w" 'backward-kill-word)
+(global-set-key "\C-x\C-k" 'kill-region)
+(global-set-key "\C-c\C-k" 'kill-region)
 (global-set-key (kbd "<f5>") (expose #'revert-buffer nil t))
 (global-set-key (kbd "C-=") #'calc)
 
