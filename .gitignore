@@ -3,3 +3,5 @@ elpa/
 auto-save-list/
 .cask/
 *.elc
+*#
+.#*

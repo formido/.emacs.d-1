@@ -42,8 +42,8 @@
 (define-key global-map [(control insert)] 'overwrite-mode)
 
 ;; I hate hitting this by accident
-(global-set-key (kbd "C-<up>") #'previous-line)
-(global-set-key (kbd "C-<down>") #'next-line)
+;; (global-set-key (kbd "C-<up>") #'previous-line)
+;; (global-set-key (kbd "C-<down>") #'next-line)
 
 ;; Magit is the only front-end I care about
 (setf vc-handled-backends nil
