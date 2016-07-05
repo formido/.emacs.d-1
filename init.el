@@ -38,7 +38,7 @@
 (global-set-key (kbd "<f5>") (expose #'revert-buffer nil t))
 (global-set-key (kbd "C-=") #'calc)
 
-;;; auto-mode-alist entries
+;; auto-mode-alist entries
 (add-to-list 'auto-mode-alist '("\\.mom$" . nroff-mode))
 (add-to-list 'auto-mode-alist '("[._]bash.*" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("Cask" . emacs-lisp-mode))
@@ -133,29 +133,29 @@
   (require 'feed-setup)
   (setf bookmark-default-file (locate-user-emacs-file "local/bookmarks")))
 
-(use-package lisp-mode
-  :defer t
-  :config
-  (progn
-    (defun ert-all ()
-      (interactive)
-      (ert t))
-    (defun ielm-repl ()
-      (interactive)
-      (pop-to-buffer (get-buffer-create "*ielm*"))
-      (ielm))
-    (define-key emacs-lisp-mode-map (kbd "C-x r")   #'ert-all)
-    (define-key emacs-lisp-mode-map (kbd "C-c C-z") #'ielm-repl)
-    (define-key emacs-lisp-mode-map (kbd "C-c C-k") #'eval-buffer*)
-    (defalias 'lisp-interaction-mode 'emacs-lisp-mode)
-    (font-lock-add-keywords
-     'emacs-lisp-mode
-     `((,(concat "(\\(\\(?:\\(?:\\sw\\|\\s_\\)+-\\)?"
-                 "def\\(?:\\sw\\|\\s_\\)*\\)\\_>"
-                 "\\s-*'?" "\\(\\(?:\\sw\\|\\s_\\)+\\)?")
-        (1 'font-lock-keyword-face)
-        (2 'font-lock-function-name-face nil t)))
-     :low-priority)))
+;; (use-package lisp-mode
+;;   :defer t
+;;   :config
+;;   (progn
+;;     (defun ert-all ()
+;;       (interactive)
+;;       (ert t))
+;;     (defun ielm-repl ()
+;;       (interactive)
+;;       (pop-to-buffer (get-buffer-create "*ielm*"))
+;;       (ielm))
+;;     (define-key emacs-lisp-mode-map (kbd "C-x r")   #'ert-all)
+;;     (define-key emacs-lisp-mode-map (kbd "C-c C-z") #'ielm-repl)
+;;     (define-key emacs-lisp-mode-map (kbd "C-c C-k") #'eval-buffer*)
+;;     (defalias 'lisp-interaction-mode 'emacs-lisp-mode)
+;;     (font-lock-add-keywords
+;;      'emacs-lisp-mode
+;;      `((,(concat "(\\(\\(?:\\(?:\\sw\\|\\s_\\)+-\\)?"
+;;                  "def\\(?:\\sw\\|\\s_\\)*\\)\\_>"
+;;                  "\\s-*'?" "\\(\\(?:\\sw\\|\\s_\\)+\\)?")
+;;         (1 'font-lock-keyword-face)
+;;         (2 'font-lock-function-name-face nil t)))
+;;      :low-priority)))
 
 (use-package time
   :config
@@ -295,13 +295,17 @@
   :init (skewer-setup)
   :config
   (progn
+    (httpd-start)
     (setf skewer-bower-cache-dir (locate-user-emacs-file "local/skewer"))
     (define-key skewer-mode-map (kbd "C-c $")
       (expose #'skewer-bower-load "jquery" "1.9.1"))))
 
 (use-package skewer-repl
   :defer t
-  :config (define-key skewer-repl-mode-map (kbd "C-c C-z") #'quit-window))
+  :config
+  (progn
+    (define-key skewer-repl-mode-map (kbd "C-c C-z") #'quit-window)
+    (httpd-start)))
 
 (use-package clojure-mode
   :ensure t
@@ -375,7 +379,7 @@
   :defer t
   :init
   (progn
-    (add-hook 'emacs-lisp-mode-hook #'paredit-mode)
+    ;(add-hook 'emacs-lisp-mode-hook #'paredit-mode)
     (add-hook 'lisp-mode-hook #'paredit-mode)
     (add-hook 'scheme-mode-hook #'paredit-mode)
     (add-hook 'ielm-mode-hook #'paredit-mode)
