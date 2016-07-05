@@ -593,4 +593,8 @@
 (byte-recompile-directory "~/.emacs.d/etc/" 0)
 (byte-recompile-file "~/.emacs.d/init.el" nil 0)
 
+(use-package persistent-scratch
+  :ensure t
+  :config (persistent-scratch-setup-default))
+
 (provide 'init) ; make (require 'init) happy
