@@ -67,6 +67,7 @@
 (use-package lua-mode
   :defer t
   :ensure t
+  :defines lua-send-current-line
   :config
   (require 'lua-extras)
   (setf lua-default-application "luajit"
@@ -295,7 +296,8 @@
   :init (skewer-setup)
   :config
   (progn
-    (httpd-start)
+    (add-hook 'skewer-mode-hook 'httpd-start)
+    (defvar skewer-bower-cache-dir)
     (setf skewer-bower-cache-dir (locate-user-emacs-file "local/skewer"))
     (define-key skewer-mode-map (kbd "C-c $")
       (expose #'skewer-bower-load "jquery" "1.9.1"))))
@@ -304,8 +306,9 @@
   :defer t
   :config
   (progn
-    (define-key skewer-repl-mode-map (kbd "C-c C-z") #'quit-window)
-    (httpd-start)))
+    (add-hook 'skewer-repl-mode-hook 'httpd-start)
+    (define-key skewer-repl-mode-map (kbd "C-c C-z") #'quit-window)))
+
 
 (use-package clojure-mode
   :ensure t
@@ -366,25 +369,25 @@
                            (car (directory-files pdf-dir t pdf-regexp))))))
 
 (use-package ielm
-  :defer t
-  :config
-  (progn
-    (define-key ielm-map (kbd "C-c C-z") #'quit-window)
-    (defadvice ielm-eval-input (after ielm-paredit activate)
-      "Begin each ielm prompt with a paredit pair."
-      (paredit-open-round))))
+  :defer t)
+  ;; :config
+  ;; (progn
+  ;;   (define-key ielm-map (kbd "C-c C-z") #'quit-window)
+  ;;   (defadvice ielm-eval-input (after ielm-paredit activate)
+  ;;     "Begin each ielm prompt with a paredit pair."
+  ;;     (paredit-open-round))))
 
 (use-package paredit
   :ensure t
   :defer t
-  :init
-  (progn
-    ;(add-hook 'emacs-lisp-mode-hook #'paredit-mode)
-    (add-hook 'lisp-mode-hook #'paredit-mode)
-    (add-hook 'scheme-mode-hook #'paredit-mode)
-    (add-hook 'ielm-mode-hook #'paredit-mode)
-    (add-hook 'clojure-mode-hook #'paredit-mode))
-  :config (define-key paredit-mode-map (kbd "C-j") #'join-line))
+  :init)
+  ;; (progn
+  ;;   ;(add-hook 'emacs-lisp-mode-hook #'paredit-mode)
+  ;;   (add-hook 'lisp-mode-hook #'paredit-mode)
+  ;;   (add-hook 'scheme-mode-hook #'paredit-mode)
+  ;;   (add-hook 'ielm-mode-hook #'paredit-mode)
+  ;;   (add-hook 'clojure-mode-hook #'paredit-mode))
+  ;; :config (define-key paredit-mode-map (kbd "C-j") #'join-line))
 
 (use-package paren
   :config (show-paren-mode))
