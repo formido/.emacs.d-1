@@ -596,6 +596,9 @@
   :ensure t
   :config (persistent-scratch-setup-default))
 
+(use-package putty-key-fixes
+  :config (fix-putty-keys))
+
 ;; Compile configuration
 (byte-recompile-directory "~/.emacs.d/lisp/" 0)
 (byte-recompile-directory "~/.emacs.d/etc/" 0)
