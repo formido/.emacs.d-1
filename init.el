@@ -30,6 +30,7 @@
 (require 'imgur)
 (require 'extras)
 (require 'utility)
+(require 'putty-key-fixes)
 
 ;; Some global keybindings
 ;(global-set-key (kbd "C-j") #'join-line)
@@ -591,13 +592,13 @@
         irfc-assoc-mode t)
   (mkdir irfc-directory t))
 
+(use-package persistent-scratch
+  :ensure t
+  :config (persistent-scratch-setup-default))
+
 ;; Compile configuration
 (byte-recompile-directory "~/.emacs.d/lisp/" 0)
 (byte-recompile-directory "~/.emacs.d/etc/" 0)
 (byte-recompile-file "~/.emacs.d/init.el" nil 0)
-
-(use-package persistent-scratch
-  :ensure t
-  :config (persistent-scratch-setup-default))
 
 (provide 'init) ; make (require 'init) happy
