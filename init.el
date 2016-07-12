@@ -599,9 +599,16 @@
 (use-package putty-key-fixes
   :config (fix-putty-keys))
 
+(use-package elixir-mode
+  :ensure t)
+
+(use-package alchemist
+  :ensure t)
+
 ;; Compile configuration
 (byte-recompile-directory "~/.emacs.d/lisp/" 0)
 (byte-recompile-directory "~/.emacs.d/etc/" 0)
 (byte-recompile-file "~/.emacs.d/init.el" nil 0)
+
 
 (provide 'init) ; make (require 'init) happy
