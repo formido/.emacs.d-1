@@ -605,6 +605,11 @@
 (use-package alchemist
   :ensure t)
 
+(use-package company
+  :ensure t
+  :defer t
+  :init (add-hook 'after-init-hook 'global-company-mode))
+
 ;; Compile configuration
 (byte-recompile-directory "~/.emacs.d/lisp/" 0)
 (byte-recompile-directory "~/.emacs.d/etc/" 0)
