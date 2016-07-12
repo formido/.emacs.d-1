@@ -2,6 +2,8 @@
 
 ;;; Code:
 
+(setq-default major-mode nil)
+
 (setf backup-inhibited t
       auto-save-default nil
       auto-save-list-file-prefix (locate-user-emacs-file "local/saves")
