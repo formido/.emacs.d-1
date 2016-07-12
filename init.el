@@ -269,6 +269,7 @@
 (use-package simple-httpd
   :ensure t
   :defer t
+  :init (add-hook 'after-init-hook (lambda () (ignore-errors (httpd-start))))
   :functions httpd-send-header
   :config
   (progn
@@ -300,7 +301,6 @@
   :init (skewer-setup)
   :config
   (progn
-    (add-hook 'skewer-mode-hook 'httpd-start)
     (defvar skewer-bower-cache-dir)
     (setf skewer-bower-cache-dir (locate-user-emacs-file "local/skewer"))
     (define-key skewer-mode-map (kbd "C-c $")
@@ -310,7 +310,6 @@
   :defer t
   :config
   (progn
-    (add-hook 'skewer-repl-mode-hook 'httpd-start)
     (define-key skewer-repl-mode-map (kbd "C-c C-z") #'quit-window)))
 
 
