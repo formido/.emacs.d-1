@@ -16,7 +16,6 @@
 
 ;; Set up package manager
 (require 'package)
-(requi
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 (setq package-enable-at-startup nil)
