@@ -170,17 +170,17 @@
           display-time-24hr-format t)
     (display-time-mode t)))
 
-(use-package comint
-  :defer t
-  :config
-  (progn
-    (define-key comint-mode-map (kbd "<down>") #'comint-next-input)
-    (define-key comint-mode-map (kbd "<up>") #'comint-previous-input)
-    ;; (define-key comint-mode-map (kbd "C-n") #'comint-next-input)
-    ;; (define-key comint-mode-map (kbd "C-p") #'comint-previous-input)
-    (define-key comint-mode-map (kbd "C-r") #'comint-history-isearch-backward)
-    (setf comint-prompt-read-only t
-          comint-history-isearch t)))
+;; (use-package comint
+;;   :defer t
+;;   :config
+;;   (progn
+;;     (define-key comint-mode-map (kbd "<down>") #'comint-next-input)
+;;     (define-key comint-mode-map (kbd "<up>") #'comint-previous-input)
+;;     ;; (define-key comint-mode-map (kbd "C-n") #'comint-next-input)
+;;     ;; (define-key comint-mode-map (kbd "C-p") #'comint-previous-input)
+;;     (define-key comint-mode-map (kbd "C-r") #'comint-history-isearch-backward)
+;;     (setf comint-prompt-read-only t
+;;           comint-history-isearch t)))
 
 (use-package tramp
   :defer t
