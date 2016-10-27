@@ -16,8 +16,9 @@
 
 ;; Set up package manager
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")))
 (setq package-enable-at-startup nil)
 (package-initialize)
 (unless (package-installed-p 'use-package)
