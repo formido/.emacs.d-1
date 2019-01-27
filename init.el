@@ -610,6 +610,8 @@
   :defer t
   :init (add-hook 'after-init-hook 'global-company-mode))
 
+(setq python-indent-offset 2)
+
 ;; Compile configuration
 (byte-recompile-directory "~/.emacs.d/lisp/" 0)
 (byte-recompile-directory "~/.emacs.d/etc/" 0)
